@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import Case from "./Case";
+import Player from "./Player";
 const Board = () => {
     const [NoOne, setNoOne] = useState(false)
     let Turn=false
@@ -17,6 +18,9 @@ const Board = () => {
 {C:1,Row:5,e:0,u:''},{C:2,Row:5,e:0,u:''},{C:3,Row:5,e:0,u:''},{C:4,Row:5,e:0,u:''},{C:5,Row:5,e:0,u:''},{C:6,Row:5,e:0,u:''},{C:7,Row:5,e:0,u:''},
 {C:1,Row:6,e:0,u:''},{C:2,Row:6,e:0,u:''},{C:3,Row:6,e:0,u:''},{C:4,Row:6,e:0,u:''},{C:5,Row:6,e:0,u:''},{C:6,Row:6,e:0,u:''},{C:7,Row:6,e:0,u:''},
     ]
+   const Restart=()=>{
+    window.location.reload()
+   }
   const check=(element: {C:number;Row:number;e:number;u:string;})=>{
 
   }
@@ -79,21 +83,21 @@ const Board = () => {
         <>
     {  !NoOne && 
       <div style={{boxShadow: "0px 17px 3px -4px rgba(0,0,0,8)"}}
-    className="p-3 pb-4 mt-[100px] border-[3px] border-[black] border-solid rounded-[30px] bg-white z-10 relative "
+    className="p-3 top-[8%] pb-4 border-[3px] border-[black] border-solid rounded-[30px] bg-white z-10  relative "
      onMouseMove={(event)=>{
         const cursor=document.getElementById("select")
         let X=event.pageX - 490
         if(X<-10) X=-10
         if(X>370) X=370
-        if(cursor != null) cursor.style.left= X+"px"; 
-
-    }}
-    >
-            <div id="select" className={`w-[40px] h-4 absolute top-[-5%] translate-x-[50%] bg-black`}  >
-
-            </div>
+        if(cursor != null) cursor.style.left= X+"px"; }}>
+            <Player Type={0} Name="Ramy" Wins={10}></Player>
+            <Player Type={1}  Name="Rayan" Wins={5}></Player>
+            <div id="select" className={`w-[40px] h-4 absolute top-[-5%] translate-x-[50%] bg-black`}  ></div>
+            <div  className=" bg-[#5c2dd5] font-semibold text-white text-center text-lg rounded-full p-1
+             px-5 fixed top-[3%] right-[38%] cursor-pointer  " onClick={()=>{Restart()}} > Restart </div>
+   
        <div  className="grid rounded-md justify-center grid-cols-[repeat(7,50px)] grid-rows-[repeat(6,50px)] 
-       gap-3 w-[420px] h-[380px]">
+       gap-3 w-[420px] cursor-pointer h-[380px]">
       <div className="absolute top-0 right-0 h-[435px] w-[70px]"  
        onClick={()=>{Clicked(7)}}> </div>  
       <div className="absolute top-0 right-[70px]  h-[435px] w-[60px]"
