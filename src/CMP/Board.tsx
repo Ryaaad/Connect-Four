@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Case from "./Case";
 const Board = () => {
-    let NoOne=false
+    const [NoOne, setNoOne] = useState(false)
     let Turn=false
     const [first, setfirst] = useState(false)
     let max=[6,6,6,6,6,6,6];
@@ -42,7 +42,7 @@ const Board = () => {
     let test=true;
     for (let i =0; i < full.length; i++) { if(full[i]!=1) test=false }
     if(test){
-        NoOne=true; console.log("no oneee");
+        setNoOne(true); console.log("no oneee");
         setfirst(true)
     }
      }
@@ -77,34 +77,36 @@ const Board = () => {
     return ( 
         
         <>
-    {  !NoOne &&  <div  >
-    <div className="p-5 mt-5 bg-black relative "
+    {  !NoOne && 
+      <div style={{boxShadow: "0px 17px 3px -4px rgba(0,0,0,8)"}}
+    className="p-3 pb-4 mt-[100px] border-[3px] border-[black] border-solid rounded-[30px] bg-white z-10 relative "
      onMouseMove={(event)=>{
         const cursor=document.getElementById("select")
-        let X=event.pageX - 420
-        if(X<0) X=0
-        if(X>520) X=520
+        let X=event.pageX - 490
+        if(X<-10) X=-10
+        if(X>370) X=370
         if(cursor != null) cursor.style.left= X+"px"; 
 
     }}
     >
-            <div id="select" className={`w-[60px] h-5 absolute top-[-5%] translate-x-[50%] bg-black`}  >
+            <div id="select" className={`w-[40px] h-4 absolute top-[-5%] translate-x-[50%] bg-black`}  >
 
             </div>
-       <div  className="grid rounded-md grid-cols-7 grid-rows-6 gap-5 w-[600px] h-[500px]">
-      <div className="absolute top-0 right-0 h-[540px] w-[95px]"  
+       <div  className="grid rounded-md justify-center grid-cols-[repeat(7,50px)] grid-rows-[repeat(6,50px)] 
+       gap-3 w-[420px] h-[380px]">
+      <div className="absolute top-0 right-0 h-[435px] w-[70px]"  
        onClick={()=>{Clicked(7)}}> </div>  
-      <div className="absolute top-0 right-[95px] h-[540px] w-[90px]"
+      <div className="absolute top-0 right-[70px]  h-[435px] w-[60px]"
        onClick={()=>{Clicked(6)}}> </div>  
-      <div className="absolute top-0 right-[185px] h-[540px] w-[90px]"
+      <div className="absolute top-0 right-[130px]  h-[435px] w-[60px]"
        onClick={()=>{Clicked(5)}}> </div>  
-      <div className="absolute top-0 right-[275px] h-[540px] w-[90px]"
+      <div className="absolute top-0 right-[195px]  h-[435px] w-[60px]"
        onClick={()=>{Clicked(4)}}> </div>  
-      <div className="absolute top-0 right-[365px] h-[540px] w-[90px]" 
+      <div className="absolute top-0 right-[255px]  h-[435px] w-[60px]" 
        onClick={()=>{Clicked(3)}}> </div>  
-      <div className="absolute top-0 right-[455px] h-[540px] w-[90px]"
+      <div className="absolute top-0 right-[315px]  h-[435px] w-[60px]"
        onClick={()=>{Clicked(2)}} > </div>  
-      <div className="absolute top-0 right-[545px] h-[540px] w-[90px]"
+      <div className="absolute top-0 right-[375px]  h-[435px] w-[70px]"
        onClick={()=>{Clicked(1)}}
       > </div>  
   {Cord.map(Cor=>{
@@ -112,8 +114,7 @@ const Board = () => {
   })}  
   
         </div>
-        </div>
-        </div> }
+        </div>}
         {NoOne && <div>NULL</div>  }
         </>);
 }
